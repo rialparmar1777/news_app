@@ -24,7 +24,9 @@ flutter doctor -v
 # Create necessary directories and files
 echo "Setting up project structure..."
 mkdir -p assets/images
+mkdir -p web/assets/images
 touch assets/images/.gitkeep
+touch web/assets/images/.gitkeep
 
 # Create .env file if it doesn't exist
 if [ ! -f ".env" ]; then
@@ -40,8 +42,12 @@ APP_VERSION=1.0.0
 EOL
 fi
 
+# Copy .env to web directory
+cp .env web/.env
+
 # Ensure .env file is readable
 chmod 644 .env
+chmod 644 web/.env
 
 echo "Getting dependencies..."
 flutter pub get
@@ -58,6 +64,7 @@ cp -r build/web/* public/
 # Copy assets directory to public
 echo "Copying assets to public directory..."
 cp -r assets public/
+cp -r web/assets public/
 
 # Copy .env file to public
 echo "Copying .env file to public directory..."
