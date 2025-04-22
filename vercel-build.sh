@@ -24,6 +24,21 @@ flutter doctor -v
 echo "Getting dependencies..."
 flutter pub get
 
+# Create necessary directories and files if they don't exist
+mkdir -p assets/images
+if [ ! -f ".env" ]; then
+  echo "Creating .env file..."
+  cat > .env << 'EOL'
+# API Configuration
+API_KEY=your_api_key_here
+API_BASE_URL=https://newsapi.org/v2
+
+# App Configuration
+APP_NAME=News App
+APP_VERSION=1.0.0
+EOL
+fi
+
 echo "Building web app..."
 flutter build web --release
 
