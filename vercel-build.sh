@@ -21,16 +21,17 @@ flutter config --enable-web
 echo "Running Flutter doctor..."
 flutter doctor -v
 
-echo "Getting dependencies..."
-flutter pub get
-
-# Create necessary directories and files if they don't exist
+# Create necessary directories and files
+echo "Setting up project structure..."
 mkdir -p assets/images
+touch assets/images/.gitkeep
+
+# Create .env file if it doesn't exist
 if [ ! -f ".env" ]; then
   echo "Creating .env file..."
   cat > .env << 'EOL'
 # API Configuration
-API_KEY=your_api_key_here
+API_KEY=7911212b47fd4131aeb437134c3f9c36
 API_BASE_URL=https://newsapi.org/v2
 
 # App Configuration
@@ -38,6 +39,12 @@ APP_NAME=News App
 APP_VERSION=1.0.0
 EOL
 fi
+
+# Ensure .env file is readable
+chmod 644 .env
+
+echo "Getting dependencies..."
+flutter pub get
 
 echo "Building web app..."
 flutter build web --release
@@ -47,6 +54,14 @@ mkdir -p public
 
 echo "Copying Flutter web assets to public directory..."
 cp -r build/web/* public/
+
+# Copy assets directory to public
+echo "Copying assets to public directory..."
+cp -r assets public/
+
+# Copy .env file to public
+echo "Copying .env file to public directory..."
+cp .env public/
 
 echo "Build completed. Listing public directory contents:"
 ls -la public/

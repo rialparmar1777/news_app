@@ -30,6 +30,10 @@
       "dest": "/public/icons/$1"
     },
     {
+      "src": "/.env",
+      "dest": "/public/.env"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },
@@ -37,5 +41,9 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ]
+  ],
+  "env": {
+    "API_KEY": "7911212b47fd4131aeb437134c3f9c36",
+    "API_BASE_URL": "https://newsapi.org/v2"
+  }
 } 

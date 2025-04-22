@@ -8,6 +8,12 @@ const nextConfig = {
       type: 'asset/resource',
     });
 
+    // Add support for .env file
+    config.module.rules.push({
+      test: /\.env$/,
+      type: 'asset/source',
+    });
+
     return config;
   },
   // Ensure static files are served from the public directory
@@ -33,8 +39,13 @@ const nextConfig = {
         source: '/icons/:path*',
         destination: '/public/icons/:path*',
       },
+      {
+        source: '/.env',
+        destination: '/public/.env',
+      },
     ];
   },
+  // Add headers for caching
   async headers() {
     return [
       {
