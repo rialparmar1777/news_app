@@ -25,10 +25,16 @@ echo "Getting dependencies..."
 flutter pub get
 
 echo "Building web app..."
-flutter build web --release --base-href /
+flutter build web --release
 
-echo "Build completed. Listing build/web contents:"
-ls -la build/web
+echo "Creating public directory..."
+mkdir -p public
+
+echo "Copying Flutter web assets to public directory..."
+cp -r build/web/* public/
+
+echo "Build completed. Listing public directory contents:"
+ls -la public/
 
 # Create a simple index.html if it doesn't exist
 if [ ! -f "build/web/index.html" ]; then

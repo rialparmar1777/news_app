@@ -8,6 +8,26 @@
   ],
   "routes": [
     {
+      "src": "/flutter.js",
+      "dest": "/flutter.js"
+    },
+    {
+      "src": "/main.dart.js",
+      "dest": "/main.dart.js"
+    },
+    {
+      "src": "/flutter_service_worker.js",
+      "dest": "/flutter_service_worker.js"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/icons/$1"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },

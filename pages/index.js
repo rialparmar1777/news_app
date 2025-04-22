@@ -10,18 +10,28 @@ export default function Home() {
     document.body.appendChild(script);
 
     script.onload = () => {
-      window.addEventListener('load', function() {
-        _flutter.loader.loadEntrypoint({
-          serviceWorker: {
-            serviceWorkerVersion: null,
-          },
-          onEntrypointLoaded: function(engineInitializer) {
-            engineInitializer.initializeEngine().then(function(appRunner) {
-              appRunner.runApp();
-            });
-          }
-        });
+      window._flutter = window._flutter || {};
+      window._flutter.loader = window._flutter.loader || {};
+      
+      window._flutter.loader.loadEntrypoint({
+        entrypointUrl: "/main.dart.js",
+        serviceWorker: {
+          serviceWorkerUrl: "/flutter_service_worker.js",
+          serviceWorkerVersion: null,
+        },
+        onEntrypointLoaded: async function(engineInitializer) {
+          const appRunner = await engineInitializer.initializeEngine({
+            hostElement: document.querySelector('#flutter_app'),
+            assetBase: "/"
+          });
+          await appRunner.runApp();
+        }
       });
+    };
+
+    return () => {
+      // Cleanup
+      document.body.removeChild(script);
     };
   }, []);
 
@@ -31,11 +41,11 @@ export default function Home() {
         <title>News App</title>
         <meta name="description" content="Stay informed with the latest news from around the world" />
         <link rel="icon" href="/favicon.png" />
-        <base href="/" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Head>
 
-      <main>
-        <div id="flutter_app"></div>
+      <main style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
+        <div id="flutter_app" style={{ height: '100%', width: '100%' }}></div>
       </main>
 
       <style jsx global>{`
@@ -43,16 +53,9 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
           height: 100%;
           width: 100%;
           overflow: hidden;
-        }
-
-        #flutter_app {
-          height: 100vh;
-          width: 100vw;
         }
       `}</style>
     </div>
