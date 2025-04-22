@@ -2,12 +2,6 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
   "routes": [
     {
       "src": "/flutter.js",
@@ -30,12 +24,8 @@
       "dest": "/public/icons/$1"
     },
     {
-      "src": "/.env",
-      "dest": "/public/.env"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/favicon.png",
+      "dest": "/public/favicon.png"
     },
     {
       "src": "/(.*)",

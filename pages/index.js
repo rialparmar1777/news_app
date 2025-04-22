@@ -13,18 +13,9 @@ export default function Home() {
       window._flutter = window._flutter || {};
       window._flutter.loader = window._flutter.loader || {};
       
-      window._flutter.loader.loadEntrypoint({
-        entrypointUrl: "/main.dart.js",
+      window._flutter.loader.load({
         serviceWorker: {
-          serviceWorkerUrl: "/flutter_service_worker.js",
           serviceWorkerVersion: null,
-        },
-        onEntrypointLoaded: async function(engineInitializer) {
-          const appRunner = await engineInitializer.initializeEngine({
-            hostElement: document.querySelector('#flutter_app'),
-            assetBase: "/"
-          });
-          await appRunner.runApp();
         }
       });
     };
