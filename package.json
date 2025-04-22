@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "chmod +x ./vercel-build.sh && ./vercel-build.sh && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:flutter": "flutter build web --release"
   },
   "dependencies": {
     "next": "^14.0.0",
