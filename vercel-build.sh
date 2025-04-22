@@ -36,6 +36,9 @@ cp -r build/web/* public/
 echo "Build completed. Listing public directory contents:"
 ls -la public/
 
+# Ensure all files are readable
+chmod -R 755 public
+
 # Create a simple index.html if it doesn't exist
 if [ ! -f "build/web/index.html" ]; then
   echo "Creating index.html..."
@@ -53,7 +56,4 @@ if [ ! -f "build/web/index.html" ]; then
 </body>
 </html>
 EOL
-fi
-
-# Ensure all files are readable
-chmod -R 755 build/web 
+fi 
