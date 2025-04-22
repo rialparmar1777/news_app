@@ -1,7 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "./vercel-build.sh",
+  "buildCommand": "chmod +x ./vercel-build.sh && ./vercel-build.sh",
   "outputDirectory": "build/web",
+  "public": true,
   "builds": [
     {
       "src": "api/**/*.js",
@@ -18,8 +19,11 @@
       "dest": "/api/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/build/web/$1"
+      "dest": "/index.html"
     }
   ],
   "framework": null
