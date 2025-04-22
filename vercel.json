@@ -19,6 +19,30 @@
       "dest": "/api/$1"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/main.dart.js",
+      "dest": "/main.dart.js"
+    },
+    {
+      "src": "/flutter.js",
+      "dest": "/flutter.js"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/favicon.png"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/icons/$1"
+    },
+    {
       "handle": "filesystem"
     },
     {
