@@ -1,16 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "chmod +x ./vercel-build.sh && ./vercel-build.sh",
-  "outputDirectory": "build/web",
-  "public": true,
   "builds": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "build/web/**",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/next"
     }
   ],
   "routes": [
@@ -19,36 +12,8 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/main.dart.js",
-      "dest": "/main.dart.js"
-    },
-    {
-      "src": "/flutter.js",
-      "dest": "/flutter.js"
-    },
-    {
-      "src": "/favicon.png",
-      "dest": "/favicon.png"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
-      "src": "/icons/(.*)",
-      "dest": "/icons/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/$1"
     }
-  ],
-  "framework": null
+  ]
 } 
